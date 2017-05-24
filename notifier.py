@@ -1,4 +1,5 @@
 import objc
+import AppKit
 import Cocoa
 
 NSApplicationDelegate = objc.protocolNamed('NSApplicationDelegate')
@@ -23,13 +24,13 @@ class AppDelegate(NSObject, protocols=[NSApplicationDelegate, NSUserNotification
 
     def bye_(self):
         uuid = self._current_notification.userInfo["uuid"]
-        notification_center = NSUserNotificationCenter.defaultUserNotificationCenter
-        for nox in notification_center.deliveredNotifications:
+        notification_center = AppKit.NSUserNotificationCenter.defaultUserNotificationCenter()
+        for nox in notification_center.deliveredNotifications():
             if nox.userInfo['uuid'] == uuid:
                 notification_center.removeDeliveredNotification_(nox)
 
     def initializeUserDefaults_():
-        defaults = NSUserDefaults.standardUserDefaults_()
+        defaults = AppKit.NSUserDefaults.standardUserDefaults_()
         app_defaults = {'sender', 'com.apple.Terminal'}
         defaults.registerDefaults_(app_defaults)
 
