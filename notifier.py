@@ -238,15 +238,26 @@ class AppDelegate(NSObject, protocols=[NSApplicationDelegate, NSUserNotification
         if userNotification.userInfo.get("waitForResponse", False):
             return
 
+    def userNotificationCenter_didActivateNotification_(self, center, notification):
+        if notification.userInfo['uuid'] != str(id(self)):
+            return
 
+        additionalActionIndex = -1L
 
-    def userNotificationCenter_(self, center):
-        pass
+        if notification.activationType == NSUserNotificationActivationTypeAdditionalActionClicked or
+            notification.activationType == NSUserNotificationActivationTypeActionButtonClicked:
+
+            if len(notification._alternateActionButtonTitles) > 1:
+                alternateActionIndex = notification._alternateActionIndex
+                additionalActionIndex = int(alternateActionIndex)
+
+                ActionsClicked = notification._alternateActionButtonTitles[additionalActionIndex]
+
 
     def listNotificationWithGroupID_(self, listGroupID):
         pass
 
-    def Quit_notification_(self, notification):
+    def Quit(self, udict, notification):
         pass
 
     def bye_(self):
