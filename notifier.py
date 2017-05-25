@@ -238,7 +238,7 @@ class AppDelegate(NSObject, protocols=[NSApplicationDelegate, NSUserNotification
         if userNotification.userInfo.get("waitForResponse", False):
             return
 
-        
+
 
     def userNotificationCenter_(self, center):
         pass
