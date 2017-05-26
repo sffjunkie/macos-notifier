@@ -1,0 +1,9 @@
+.bzr
+.bzrignore
+*.pyc
+build
+dist
+venv
+.tox
+.settings
+.cache
